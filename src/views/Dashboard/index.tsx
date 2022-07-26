@@ -1,8 +1,72 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Button, Col, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { actionGetPassengersList, actionRemovePassenger, actionViewDetails } from '../../action';
+import CustomTable from '../../components/Table';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const DashBoard = () => {
+  const dispatch = useDispatch<any>()
+  const passengers = useSelector<any>(state => state?.passengers);
+  const [loader, setLoader] = useState(true)
+
+
+  // GET PASSENGER LIST FUNCTION
+  const getPassengerList = React.useCallback(async () => {
+    dispatch(actionGetPassengersList());
+    setLoader(false)
+  }, [dispatch])
+
+
+  useEffect(() => {
+    if (loader) {
+      getPassengerList()
+    }
+  }, [getPassengerList, loader])
+
+  const handleRemovePassenger = (id: any): any => {
+    dispatch(actionRemovePassenger(id));
+  }
+
+  const handleView = (id: any) : any => {
+    dispatch(actionViewDetails(id));
+  }
+
+  const CustomActions = (id: any) => (
+    <div>
+      <Button onClick={handleView(id)}>View</Button>
+      <Button onClick={handleRemovePassenger(id)}>Delete</Button>
+    </div>
+  )
+
+
+  // SETTING DATA TO TABLE
+  const getTableData = () => {
+    // @ts-ignore: Unreachable code error
+    const newPassengerList = passengers?.passengers?.data?.data?.length && [...passengers?.passengers?.data?.data].map((passenger, i) => ({
+      ...passenger, 
+      action: <CustomActions id={passenger.id} />
+    }))
+    return newPassengerList || [];
+  }
+
+
   return (
-    <div>DashBoard</div>
+    <div className='dashboard'>
+      <Row>
+        <Col className='d-flex justify-content-between'>
+          <span>Passenger Management System</span>
+          <div className='p-2 m-2'>
+          <Link to="/addPassenger"><Button>Add Passenger</Button></Link>
+          <Link to="/bookTicket"><Button>Book Ticket</Button></Link>
+          </div>
+        </Col>
+        <Col xs={12}>
+          <CustomTable data={getTableData()} />
+        </Col>
+      </Row>
+    </div>
   )
 }
 

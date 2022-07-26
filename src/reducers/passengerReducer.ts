@@ -1,20 +1,26 @@
-import { GET_PASSENGERS_LIST_BEGINS, GET_PASSENGERS_LIST_FAILURE, GET_PASSENGERS_LIST_SUCCESS } from '../constants';
+import { ADD_PASSENGER_SUCCESS, GET_PASSENGERS_LIST_SUCCESS, REMOVE_PASSENGER_SUCCESS, VIEW_DETAILS_SUCCESS } from '../constants';
 
 const INITIAL_STATE = {
-  isLoading: false,
   passengers: {
+    data: []
+  },
+  bookTicket: {
     data: []
   }
 }
 
 const passengerReducer = (state = INITIAL_STATE, action: { type: any; data: any; }) => {
-  switch (action.type) {
-    case GET_PASSENGERS_LIST_BEGINS:
-      return { ...state, isLoading: true };
+  console.log(state, "data");
+
+  switch (action?.type) {
     case GET_PASSENGERS_LIST_SUCCESS:
-      return { ...state, isLoading: false, passengers: action.data };
-    case GET_PASSENGERS_LIST_FAILURE:
-      return { ...state, isLoading: false };
+      return { ...state, passengers: action?.data };
+    case REMOVE_PASSENGER_SUCCESS:
+      return { ...state, passengers: action?.data  }
+    case ADD_PASSENGER_SUCCESS:
+      return { ...state, passengers: action?.data}
+    case VIEW_DETAILS_SUCCESS:
+      return { ...state}
     default:
       return state;
   }
