@@ -1,0 +1,23 @@
+{
+    "message": "success",
+    "status": 200,
+    "data": {
+        "data": [
+            {
+                "id": 1,
+                "startDate": "ajith",
+                "endDate": "Chelapurath house, peechi po, vilanganoor, thrissur",
+                "numberofPassengers": 123456,
+                "chooseClass": "something"
+            },
+            {
+                "id": 2,
+                "startDate": "ajith",
+                "endDate": "Chelapurath house, peechi po, vilanganoor, thrissur",
+                "numberofPassengers": 123456,
+                "chooseClass": "something"
+            }
+        ],
+        "total": 2
+    }
+}

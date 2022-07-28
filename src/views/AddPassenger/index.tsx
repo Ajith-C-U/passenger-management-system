@@ -16,7 +16,7 @@ const AddPassenger = () => {
         e.preventDefault()
         // @ts-ignore: Unreachable code error
         const newPassengerList = passengers?.passengers?.data?.data?.push(value)
-        dispatch(actionAddPassenger(newPassengerList));
+        dispatch(actionAddPassenger((value: any) => [...value, newPassengerList]));
         navigate("/")
     }
 
@@ -27,7 +27,7 @@ const AddPassenger = () => {
 
     return (
         <>
-            <Form onSubmit={e => { handleSubmit(e) }}>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Name</Form.Label>
                     <Form.Control type="text" name="name" value={value.name} onChange={e => handleChange(e)} placeholder="Name" required />
