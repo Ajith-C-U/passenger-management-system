@@ -7,11 +7,10 @@ function CustomTable({ ...props }) {
         <Table striped bordered hover>
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
-                    <th>Actions</th>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Passport Number</th>
                 </tr>
             </thead>
             <tbody>

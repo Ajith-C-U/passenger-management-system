@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, FC } from 'react'
 import { Button, Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -6,9 +6,14 @@ import { actionGetBookedPassengersList } from '../../action';
 import CustomTable1 from '../../components/BookedPassengersTable';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+interface Props {
+  id:any
+  // any props that come into the component
+}
+
 const BookedPassengers = () => {
   const dispatch = useDispatch<any>()
-  const bookTicket = useSelector<any>(state => state?.passengers);
+  const bookTicket : any = useSelector<any>(state => state?.passengers);
   const [loader, setLoader] = useState(true)
 
 
@@ -29,26 +34,42 @@ const BookedPassengers = () => {
     // dispatch(actionRemovePassenger(id));
   }
 
-  const handleView = (id: any) : any => {
-    // dispatch(actionViewDetails(id));
-  }
-
-  const CustomActions = (id: any) => (
-    <div>
-      <Button onClick={handleView(id)}>View</Button>
-      <Button onClick={handleRemovePassenger(id)}>Delete</Button>
-    </div>
-  )
+  // const CustomActions = (id: any) => (
+  //   <div>
+  //      <Button><Link to={`/passengerDetails/${id}`}>View</Link></Button>
+  //     <Button onClick={handleRemovePassenger(id)}>Delete</Button>
+  //   </div>
+  // )
 
   // SETTING DATA TO TABLE
-  const getTableData = () => {
-    // @ts-ignore: Unreachable code error
-    const newBookedPassengerList = bookTicket?.bookTicket?.data?.data?.length && [...bookTicket?.bookTicket?.data?.data].map((booked, i) => ({
-      ...booked, 
-      action: <CustomActions  />
+  // const getTableData = () => {
+  //   // @ts-ignore: Unreachable code error
+  //   const newBookedPassengerList = bookTicket?.bookTicket?.data?.data?.length && [...bookTicket?.bookTicket?.data?.data].map(booked => ({
+    //     ...booked,
+    //     action: <CustomActions id={booked.id} />
+    //   }))
+    //   console.log(newBookedPassengerList,"newBookedPassengerList");
+    
+    //   return newBookedPassengerList || [];
+    // }
+    
+    const getTableData = () => {
+    //   // @ts-ignore: Unreachable code error
+    const newBookedPassengerList = bookTicket?.bookTicket?.data?.data?.length && [...bookTicket?.bookTicket?.data?.data].map(cartItem => ({
+      ...cartItem,
+      action: <CustomActions id={cartItem?.id}  />,
+      
     }))
     return newBookedPassengerList || [];
   }
+
+  const CustomActions : FC<Props> =({ id}) => (<span className='d-flex flex-direction-row align-items-center'>
+   
+    <Link to={`/passengerDetails/${id}`}><span className='d-flex justify-content-center align-items-center ms-2'>
+     View
+    </span></Link>
+  </span>)
+
 
 
   return (

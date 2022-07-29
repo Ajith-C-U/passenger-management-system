@@ -3,12 +3,11 @@ import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import "./index.scss"
 
 const Map = () => {
-    const [state, setState] = useState({
+    const [state] = useState({
         lat: 51.505,
         lng: -0.09,
         zoom: 13
     })
-    const position = [state.lat, state.lng];
     return (
         <div className='custom-map'>
             <MapContainer center={[51.505, -0.09]} zoom={state.zoom} scrollWheelZoom={false}>

@@ -3,16 +3,28 @@ import { Button, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { actionBookTicket } from '../../action';
 import { v4 as uuid } from "uuid"
-import DateRangePicker from '../../components/DateRangePicker';
 import { useNavigate } from 'react-router-dom';
-
+import DateRangePicker from 'rsuite/DateRangePicker';
+import moment from "moment";
+import "rsuite/dist/rsuite.css";
 
 const BookTicket = () => {
     const dispatch = useDispatch<any>()
     const bookTicket = useSelector<any>(state => state?.passengers);
     const navigate = useNavigate()
-    const [value, setValue] = useState({ id: uuid(), startDate: "1/1/11", endDate: "2/2/22", numberofPassengers: "", chooseClass: "" })
+    const [fromDate] = useState(new Date());
+    const [toDate] = useState(new Date());
+    const [value, setValue] = useState({ id: uuid(), startDate: "10/25/2022", endDate: "10/26/2022", numberofPassengers: "", chooseClass: "" })
 
+    
+    const handleChange = (e: any) => {
+        setValue({ ...value, [e.target.name]: e.target.value });
+    }
+    
+    const handleDateChange = (e: any) => {
+        console.log(e[1], "datae");
+    }
+    
     const handleSubmit = (e: any) => {
         e.preventDefault()
         // @ts-ignore: Unreachable code error
@@ -21,12 +33,15 @@ const BookTicket = () => {
         navigate("/bookedpassengers")
     }
 
-    const handleChange = (e: any) => {
-        setValue({ ...value, [e.target.name]: e.target.value });
-    }
     return (
         <>
-            <DateRangePicker />
+            <DateRangePicker
+                onChange={handleDateChange}
+                >
+                <button>
+                    {moment(fromDate).format("LL")} to {moment(toDate).format("LL")}
+                </button>
+            </DateRangePicker>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Number of Passengers</Form.Label>

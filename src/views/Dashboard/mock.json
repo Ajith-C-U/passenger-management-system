@@ -3,36 +3,6 @@
     "status": 200,
     "data": {
         "data": [
-            {
-                "id": 1,
-                "name": "ajith",
-                "address": "Chelapurath house, peechi po, vilanganoor, thrissur",
-                "passportNumber": 123456
-            },
-            {
-                "id": 2,
-                "name": "ragini",
-                "address": "pulinkuzhi house, ollur po, ollur, thrissur",
-                "passportNumber": 223456
-            },
-            {
-                "id": 3,
-                "name": "akhil",
-                "address": "sample address 1",
-                "passportNumber": 323456
-            },
-            {
-                "id": 4,
-                "name": "akash",
-                "address": "sample address 2",
-                "passportNumber": 423456
-            },
-            {
-                "id": 5,
-                "name": "sojin",
-                "address": "sample address 3",
-                "passportNumber": 523456
-            }
         ],
         "total": 5
     }
