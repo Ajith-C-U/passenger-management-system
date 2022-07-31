@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actionGetPassengersList } from '../../action';
 import CustomTable from '../../components/Table';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const DashBoard = () => {
   const dispatch = useDispatch<any>()

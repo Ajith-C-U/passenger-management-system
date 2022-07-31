@@ -7,7 +7,6 @@ function CustomTable({ ...props }) {
         <Table striped bordered hover>
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Name</th>
                     <th>Address</th>
                     <th>Passport Number</th>
@@ -18,11 +17,9 @@ function CustomTable({ ...props }) {
                     return (
                         <>
                             <tr>
-                                <td>{data.id}</td>
                                 <td>{data.name}</td>
                                 <td>{data.address}</td>
-                                <td>{data.passportNumber}</td>
-                                <td>{data.action}</td>
+                                <td>{data.passportNumber}</td>  
                             </tr>
                         </>
                     )

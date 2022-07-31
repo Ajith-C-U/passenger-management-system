@@ -2,18 +2,17 @@ import React, { useEffect, useState, FC } from 'react'
 import { Button, Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { actionGetBookedPassengersList } from '../../action';
+import { actionGetBookedPassengersList, actionRemovePassenger } from '../../action';
 import CustomTable1 from '../../components/BookedPassengersTable';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface Props {
-  id:any
+  id: any
   // any props that come into the component
 }
 
 const BookedPassengers = () => {
   const dispatch = useDispatch<any>()
-  const bookTicket : any = useSelector<any>(state => state?.passengers);
+  const bookTicket: any = useSelector<any>(state => state?.passengers);
   const [loader, setLoader] = useState(true)
 
 
@@ -26,50 +25,33 @@ const BookedPassengers = () => {
 
   useEffect(() => {
     if (loader) {
-        getBookedPassengerList()
+      getBookedPassengerList()
     }
   }, [getBookedPassengerList, loader])
 
-  const handleRemovePassenger = (id: any): any => {
-    // dispatch(actionRemovePassenger(id));
-  }
-
-  // const CustomActions = (id: any) => (
-  //   <div>
-  //      <Button><Link to={`/passengerDetails/${id}`}>View</Link></Button>
-  //     <Button onClick={handleRemovePassenger(id)}>Delete</Button>
-  //   </div>
-  // )
-
-  // SETTING DATA TO TABLE
-  // const getTableData = () => {
-  //   // @ts-ignore: Unreachable code error
-  //   const newBookedPassengerList = bookTicket?.bookTicket?.data?.data?.length && [...bookTicket?.bookTicket?.data?.data].map(booked => ({
-    //     ...booked,
-    //     action: <CustomActions id={booked.id} />
-    //   }))
-    //   console.log(newBookedPassengerList,"newBookedPassengerList");
-    
-    //   return newBookedPassengerList || [];
-    // }
-    
-    const getTableData = () => {
-    //   // @ts-ignore: Unreachable code error
-    const newBookedPassengerList = bookTicket?.bookTicket?.data?.data?.length && [...bookTicket?.bookTicket?.data?.data].map(cartItem => ({
-      ...cartItem,
-      action: <CustomActions id={cartItem?.id}  />,
-      
+// Table Data
+  const getTableData = () => {
+    const newBookedPassengerList = bookTicket?.bookTicket?.data?.data?.length && [...bookTicket?.bookTicket?.data?.data].map(passenger => ({
+      ...passenger,
+      action: <CustomActions id={passenger?.id} />
     }))
+    
     return newBookedPassengerList || [];
   }
+  
+// Delete Passenger
+  const handleDelete = (id: any) => {
+    const newPassengers = bookTicket?.bookTicket?.data?.data?.length && [...bookTicket?.bookTicket?.data?.data].filter((passenger: { id: any; }) => passenger.id !== id)
+    dispatch(actionRemovePassenger(newPassengers))
+  }
 
-  const CustomActions : FC<Props> =({ id}) => (<span className='d-flex flex-direction-row align-items-center'>
-   
-    <Link to={`/passengerDetails/${id}`}><span className='d-flex justify-content-center align-items-center ms-2'>
-     View
-    </span></Link>
-  </span>)
-
+  const CustomActions: FC<Props> = ({ id }) => (
+    <span className='d-flex flex-direction-row align-items-center mr-2'>
+      <Link to={`/passengerDetails/${id}`}>
+        <Button className='d-flex justify-content-center align-items-center ms-2'>View</Button>
+      </Link>
+      <Button onClick={() => handleDelete(id)}>Delete</Button>
+    </span>)
 
 
   return (
@@ -78,8 +60,8 @@ const BookedPassengers = () => {
         <Col className='d-flex justify-content-between'>
           <span>Passenger Management System</span>
           <div className='p-2 m-2'>
-          <Link to="/addPassenger"><Button>Add Passenger</Button></Link>
-          <Link to="/bookTicket"><Button>Book Ticket</Button></Link>
+            <Link to="/addPassenger"><Button>Add Passenger</Button></Link>
+            <Link to="/bookTicket"><Button>Book Ticket</Button></Link>
           </div>
         </Col>
         <Col xs={12}>

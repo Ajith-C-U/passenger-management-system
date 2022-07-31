@@ -9,9 +9,8 @@ const AddPassenger = () => {
     const dispatch = useDispatch<any>()
     const navigate = useNavigate()
     const passengers = useSelector<any>(state => state?.passengers);
-
     const [value, setValue] = useState({ id: uuid(), name: "", address: "", passportNumber: "" })
-
+    
     const handleSubmit = (e: any) => {
         e.preventDefault()
         // @ts-ignore: Unreachable code error
