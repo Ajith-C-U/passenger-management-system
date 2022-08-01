@@ -29,12 +29,12 @@ const BookedPassengerTable = (data: any) => {
     };
 
     const [columns, setColumns] = useState(columnsFromBackend);
-    // const [newData, setNewData] = useState(data)
-
+    
     
     const onDragEnd = (result: DropResult, columns: { [x: string]: any; }, setColumns: { (value: React.SetStateAction<{ [x: string]: { name: string; items: { id: string; content: string; }[]; }; }>): void; (arg0: any): void; }) => {
         if (!result.destination) return;
         const { source, destination } = result;
+        console.log("source n dest",source, destination, columns)
 
         if (source.droppableId !== destination.droppableId) {
             const sourceColumn = columns[source.droppableId];
@@ -43,7 +43,6 @@ const BookedPassengerTable = (data: any) => {
             const destItems = [...destColumn.items];
             const [removed] = sourceItems.splice(source.index, 1);
             destItems.splice(destination.index, 0, removed);
-            // setNewData({...newData, chooseClass:destColumn.name })
             setColumns({
                 ...columns,
                 [source.droppableId]: {
@@ -60,6 +59,7 @@ const BookedPassengerTable = (data: any) => {
             const copiedItems = [...column.items];
             const [removed] = copiedItems.splice(source.index, 1);
             copiedItems.splice(destination.index, 0, removed);
+            console.log(copiedItems,"items");
             setColumns({
                 ...columns,
                 [source.droppableId]: {
@@ -132,7 +132,7 @@ const BookedPassengerTable = (data: any) => {
                                                                         <div>{item.startDate}</div>
                                                                         <div>{item.endDate}</div>
                                                                         <div>{item.numberofPassengers}</div>
-                                                                        <div>{item.chooseClass}</div>
+                                                                        <div>{column.name}</div>
                                                                     </div>
                                                                 );
                                                             }}
