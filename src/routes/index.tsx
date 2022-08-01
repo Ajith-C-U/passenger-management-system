@@ -1,10 +1,13 @@
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import AddPassenger from '../views/AddPassenger'
-import BookedPassengers from '../views/BookedPassengersList'
-import PassengerDetails from '../views/BookedPassengersList/PassengerDetails'
-import BookTicket from '../views/BookTicket'
-import DashBoard from '../views/Dashboard'
-import NotFound from '../views/NotFound'
+
+const AddPassenger = React.lazy(() => import('../views/AddPassenger'));
+const BookedPassengers = React.lazy(() => import('../views/BookedPassengersList'));
+const PassengerDetails = React.lazy(() => import('../views/BookedPassengersList/PassengerDetails'));
+const BookTicket = React.lazy(() => import('../views/BookTicket'));
+const DashBoard = React.lazy(() => import('../views/Dashboard'));
+const NotFound = React.lazy(() => import('../views/NotFound'));
+
 
 const DefaultRoutes = () => {
   return (
