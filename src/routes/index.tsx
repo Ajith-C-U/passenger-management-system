@@ -14,15 +14,15 @@ const DefaultRoutes = () => {
   return (
     <>
       <BrowserRouter>
-      <Suspense fallback={<GlobalSpinner />}>
-        <Routes>
-          <Route path="/" element={<DashBoard />} />
-          <Route path="/addPassenger" element={<AddPassenger />} />
-          <Route path="/bookTicket" element={<BookTicket />} />
-          <Route path="/bookedpassengers" element={<BookedPassengers />} />
-          <Route path="/passengerDetails/:id" element={<PassengerDetails />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<GlobalSpinner />}>
+          <Routes>
+            <Route path="/" element={<DashBoard />} />
+            <Route path="/addPassenger" element={<AddPassenger />} />
+            <Route path="/bookTicket" element={<BookTicket />} />
+            <Route path="/bookedpassengers" element={<BookedPassengers />} />
+            <Route path="/passengerDetails/:id" element={<PassengerDetails />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </Suspense>
       </BrowserRouter>
     </>
