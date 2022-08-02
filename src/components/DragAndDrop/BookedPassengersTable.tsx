@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
+import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { actionRemovePassenger } from "../../action";
 
@@ -8,23 +9,23 @@ const BookedPassengerTable = (data: any) => {
     const dispatch = useDispatch<any>()
 
     let columnsFromBackend = {
-        ['1']: {
+        '1': {
             name: "First Class",
             items: data?.data?.filter((data: { chooseClass: any; }) => data?.chooseClass === "First Class")
         },
-        ['2']: {
+        '2': {
             name: "Business Class",
             items: data?.data?.filter((data: { chooseClass: any; }) => data?.chooseClass === "Business Class")
         },
-        ['3']: {
+        '3': {
             name: "Premium Economy",
             items: data?.data?.filter((data: { chooseClass: any; }) => data?.chooseClass === "Premium Economy")
         },
-        ['4']: {
+        '4': {
             name: "Economy Class",
             items: data?.data?.filter((data: { chooseClass: any; }) => data?.chooseClass === "Economy Class")
         },
-        ['5']: {
+        '5': {
             name: "Basic Economy",
             items: data?.data?.filter((data: { chooseClass: any; }) => data?.chooseClass === "Basic Economy")
         }
@@ -141,7 +142,10 @@ const BookedPassengerTable = (data: any) => {
                                                                         <div>{item.endDate}</div>
                                                                         <div>{item.numberofPassengers}</div>
                                                                         <div>{column.name}</div>
-                                                                        <button onClick={() => removeItem(columnId, item.id)}>delete</button>
+                                                                        <div className="d-flex">
+                                                                        <div className="p-2 m-3">{item.action}</div>
+                                                                        <Button className="p-2 m-4" onClick={() => removeItem(columnId, item.id)}>delete</Button>
+                                                                        </div>
                                                                     </div>
                                                                 );
                                                             }}

@@ -40,19 +40,13 @@ const BookedPassengers = () => {
     
     return newBookedPassengerList || [];
   }
-  
-// Delete Passenger
-  const handleDelete = (id: any) => {
-    const newPassengers = bookTicket?.bookTicket?.data?.data?.length && [...bookTicket?.bookTicket?.data?.data].filter((passenger: { id: any; }) => passenger.id !== id)
-    dispatch(actionRemovePassenger(newPassengers))
-  }
+ 
 
   const CustomActions: FC<Props> = ({ id }) => (
     <span className='d-flex flex-direction-row align-items-center mr-2'>
       <Link to={`/passengerDetails/${id}`}>
         <Button className='d-flex justify-content-center align-items-center ms-2'>View</Button>
       </Link>
-      <Button onClick={() => handleDelete(id)}>Delete</Button>
     </span>)
 
 

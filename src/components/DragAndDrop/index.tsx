@@ -5,7 +5,7 @@ const CustomTable1 = ({ ...props }) => {
     const { data } = props
 
     return (
-        <>
+        <div className='m-5'>
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -29,7 +29,7 @@ const CustomTable1 = ({ ...props }) => {
 
                 </tbody>
             </Table>
-        </>
+        </div>
     );
 }
 
