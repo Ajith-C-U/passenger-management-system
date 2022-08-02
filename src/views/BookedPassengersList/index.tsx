@@ -3,8 +3,8 @@ import { Button, Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actionGetBookedPassengersList, actionRemovePassenger } from '../../action';
-import CustomTable1 from '../../components/BookedPassengersTable';
-import BookedPassengerTable from '../../components/BookedPassengersTable/BookedPassengersTable';
+import CustomTable1 from '../../components/DragAndDrop';
+import BookedPassengerTable from '../../components/DragAndDrop/BookedPassengersTable';
 
 interface Props {
   id: any
