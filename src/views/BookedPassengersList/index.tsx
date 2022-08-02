@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actionGetBookedPassengersList, actionRemovePassenger } from '../../action';
 import CustomTable1 from '../../components/BookedPassengersTable';
+import BookedPassengerTable from '../../components/BookedPassengersTable/BookedPassengersTable';
 
 interface Props {
   id: any
@@ -58,11 +59,14 @@ const BookedPassengers = () => {
     <div className='dashboard'>
       <Row>
         <Col className='d-flex justify-content-between'>
-          <span>Passenger Management System</span>
+        <span className='p-2 m-2'>Passenger Management System</span>
           <div className='p-2 m-2'>
-            <Link to="/addPassenger"><Button>Add Passenger</Button></Link>
-            <Link to="/bookTicket"><Button>Book Ticket</Button></Link>
+          <Link to="/addPassenger" className='p-2 m-2'><Button>Add Passenger</Button></Link>
+          <Link to="/bookTicket"  className='p-2 m-2'><Button>Book Ticket</Button></Link>
           </div>
+        </Col>
+        <Col xs={12}>
+        <BookedPassengerTable data={getTableData()} />
         </Col>
         <Col xs={12}>
           <CustomTable1 data={getTableData()} />

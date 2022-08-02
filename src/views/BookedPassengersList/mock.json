@@ -6,7 +6,6 @@
             {
                 "id": "1",
                 "startDate": "03/7/2022",
-                "endDate": "04/7/2022",
                 "numberofPassengers": 123456,
                 "chooseClass": "First Class",
                 "from" : "2.3522, 48.8566",
@@ -15,7 +14,6 @@
             {
                 "id": "2",
                 "startDate": "09/7/2022",
-                "endDate": "10/7/2022",
                 "numberofPassengers": 126,
                 "chooseClass": "Business Class",
                 "from" : "2.3522, 48.8566",

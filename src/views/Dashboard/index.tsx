@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actionGetPassengersList } from '../../action';
 import CustomTable from '../../components/Table';
+import header from "./header.json"
 
 const DashBoard = () => {
   const dispatch = useDispatch<any>()
@@ -40,14 +41,14 @@ const DashBoard = () => {
     <div className='dashboard'>
       <Row>
         <Col className='d-flex justify-content-between'>
-          <span>Passenger Management System</span>
+          <span className='p-2 m-2'>Passenger Management System</span>
           <div className='p-2 m-2'>
-          <Link to="/addPassenger"><Button>Add Passenger</Button></Link>
-          <Link to="/bookTicket"><Button>Book Ticket</Button></Link>
+          <Link to="/addPassenger" className='p-2 m-2'><Button>Add Passenger</Button></Link>
+          <Link to="/bookTicket"  className='p-2 m-2'><Button>Book Ticket</Button></Link>
           </div>
         </Col>
         <Col xs={12}>
-          <CustomTable data={getTableData()} />
+          <CustomTable header={header} data={getTableData()} />
         </Col>
       </Row>
     </div>

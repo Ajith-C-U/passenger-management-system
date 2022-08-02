@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 }
 
 const passengerReducer = (state = INITIAL_STATE, action: { type: any; data: any; }) => {
-
+  
   switch (action?.type) {
     case GET_PASSENGERS_LIST_SUCCESS:
       return { ...state, passengers: action?.data };

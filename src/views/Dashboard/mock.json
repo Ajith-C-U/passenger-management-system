@@ -1,9 +1,9 @@
 {
-    "message": "success",
-    "status": 200,
-    "data": {
-        "data": [
-        ],
-        "total": 5
-    }
+  "message": "success",
+  "status": 200,
+  "data": {
+      "data": [
+      ],
+      "total": 5
+  }
 }

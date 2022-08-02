@@ -1,0 +1,20 @@
+[
+    {
+        "dataField": "name",
+        "text": "Name",
+        "sort": false,
+        "filterable": false
+    },
+    {
+        "dataField": "address",
+        "text": "Address",
+        "sort": false,
+        "filterable": false
+    },
+    {
+        "dataField": "passportNumber",
+        "text": "Passport Number",
+        "sort": false,
+        "filterable": false
+    }
+]

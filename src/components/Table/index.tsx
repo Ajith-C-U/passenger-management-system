@@ -1,15 +1,17 @@
+import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal } from 'react';
 import Table from 'react-bootstrap/Table';
 
 function CustomTable({ ...props }) {
-    const { data } = props
+    const { data, header } = props
 
     return (
         <Table striped bordered hover>
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Passport Number</th>
+                    {header && header?.map((title: { text: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; },index: any)=>(
+
+                    <th key={index}>{title.text}</th>
+                    ))}
                 </tr>
             </thead>
             <tbody>

@@ -1,5 +1,4 @@
 import Table from 'react-bootstrap/Table';
-import BookedPassengerTable from './BookedPassengersTable';
 
 
 const CustomTable1 = ({ ...props }) => {
@@ -7,29 +6,24 @@ const CustomTable1 = ({ ...props }) => {
 
     return (
         <>
-        <BookedPassengerTable data={data} />
             <Table striped bordered hover>
                 <thead>
                     <tr>
                         <th>Start Date</th>
-                        <th>End Date</th>
                         <th>Number Of Passengers</th>
                         <th>Class</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {data?.length && data?.map((data: { id: number, startDate: string, endDate: string, numberofPassengers: string, chooseClass: string, action: any }) => {
+                    {data?.length && data?.map((data: { id: number, startDate: string, numberofPassengers: string, chooseClass: string, action: any }, index : number) => {
                         return (
-                            <>
-                                <tr>
+                                <tr key={index}>
                                     <td>{data?.startDate}</td>
-                                    <td>{data?.endDate}</td>
                                     <td>{data?.numberofPassengers}</td>
                                     <td>{data?.chooseClass}</td>
                                     <td>{data?.action}</td>
                                 </tr>
-                            </>
                         )
                     })}
 
