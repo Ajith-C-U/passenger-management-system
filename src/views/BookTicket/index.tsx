@@ -5,6 +5,7 @@ import { actionBookTicket } from '../../action';
 import { v4 as uuid } from "uuid"
 import { useNavigate } from 'react-router-dom';
 import ReactDatePicker from 'react-datepicker';
+import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
 import "./index.scss"
 
@@ -23,6 +24,11 @@ const BookTicket = () => {
         setValue({ ...value, [e.target.name]: e.target.value, startDate: newStartDate });
     }
 
+    const CheckValidation = (value: any) => {
+        if (value === "") {
+            return "This field is required"
+        }
+    }
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
@@ -64,30 +70,33 @@ const BookTicket = () => {
         <div className='book-ticket'>
             <div className="date-picker mb-3">
                 <label>Choose Date to Travel</label>
-                <ReactDatePicker selected={startDate} onChange={(date) => date && setStartDate(date)} />
+                <ReactDatePicker selected={startDate} onChange={(date) => date && setStartDate(date)} minDate={moment().toDate()} />
+                <span className='validation'>{CheckValidation(value.startDate)}</span>
             </div>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Number of Passengers</Form.Label>
-                    <Form.Control type="text" name="numberofPassengers" value={value.numberofPassengers} onChange={handleChange} placeholder="Number of Passengers" required />
+                    <Form.Control type="number" name="numberofPassengers" min="1" value={value.numberofPassengers} onChange={handleChange} onKeyDown={e => (e.keyCode === 69 || e.keyCode === 190 || e.keyCode === 187 || e.keyCode === 189) && e.preventDefault()} placeholder="Number of Passengers" />
+                    <span className='validation'>{CheckValidation(value.numberofPassengers)}</span>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                     <Form.Label>Choose Class</Form.Label>
                     <Form.Select name="chooseClass" value={value.chooseClass} onChange={handleChange}>
-                        <option>Select Class</option>
+                        <option value="">Select Class</option>
                         <option value="First Class">First Class</option>
                         <option value="Business Class">Business Class</option>
                         <option value="Premium Economy">Premium Economy</option>
                         <option value="Economy Class">Economy Class</option>
                         <option value="Basic Economy">Basic Economy</option>
                     </Form.Select>
+                    <span className='validation'>{CheckValidation(value.chooseClass)}</span>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                     <Form.Label>From</Form.Label>
                     <Form.Select name="from" value={value.from} onChange={handleChange}>
-                        <option>Select Your Place</option>
+                        <option value="">Select Your Place</option>
                         {options && options.map((opt, index) => {
                             return (
                                 <>
@@ -96,6 +105,7 @@ const BookTicket = () => {
                             )
                         })}
                     </Form.Select>
+                    <span className='validation'>{CheckValidation(value.from)}</span>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
@@ -110,8 +120,9 @@ const BookTicket = () => {
                             )
                         })}
                     </Form.Select>
+                    <span className='validation'>{CheckValidation(value.to)}</span>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" disabled={!value.chooseClass || !value.from || !value.to || !value.numberofPassengers || !value.startDate}>
                     Submit
                 </Button>
             </Form>

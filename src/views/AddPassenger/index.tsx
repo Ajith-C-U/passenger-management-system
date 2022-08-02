@@ -28,23 +28,32 @@ const AddPassenger = () => {
         setValue({ ...value, [e.target.name]: e.target.value });
     }
 
+    const CheckValidation = (value : any ) => {
+        if(value === "" || undefined || null){
+            return "This field is required"
+        }
+    }
+
     return (
         <div className='add-passenger'>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label className='add-passenger-label'>Name</Form.Label>
                     <Form.Control type="text" name="name" value={value.name} onChange={handleChange} placeholder="Name" required />
+                    <span className='validation'>{CheckValidation(value.name)}</span>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Address</Form.Label>
                     <Form.Control type="text" name="address" value={value.address} onChange={handleChange} placeholder="Address" required />
+                    <span className='validation'>{CheckValidation(value.address)}</span>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Passport Number</Form.Label>
                     <Form.Control type="text" name="passportNumber" value={value.passportNumber} onChange={handleChange} placeholder="Passport Number" required />
+                    <span className='validation'>{CheckValidation(value.passportNumber)}</span>
                 </Form.Group>
-                <Button variant="primary" type="submit" >
+                <Button variant="primary" type="submit" disabled={!value.address || !value.name || !value.passportNumber} >
                     Submit {isLoading ? <Spinner
                         as="span"
                         animation="grow"

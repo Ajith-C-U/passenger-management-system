@@ -41,7 +41,7 @@ const DashBoard = () => {
     <div className='dashboard'>
       <Row>
         <Col className='d-flex justify-content-between'>
-          <span className='p-2 m-2'>Passenger Management System</span>
+          <span className='logo p-2 m-2'>Passenger Management System</span>
           <div className='p-2 m-2'>
           <Link to="/addPassenger" className='p-2 m-2'><Button>Add Passenger</Button></Link>
           <Link to="/bookTicket"  className='p-2 m-2'><Button>Book Ticket</Button></Link>

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
-import { v4 as uuid } from "uuid"
 import { actionRemovePassenger } from "../../action";
 
 
@@ -9,23 +8,23 @@ const BookedPassengerTable = (data: any) => {
     const dispatch = useDispatch<any>()
 
     let columnsFromBackend = {
-        [uuid()]: {
+        ['1']: {
             name: "First Class",
             items: data?.data?.filter((data: { chooseClass: any; }) => data?.chooseClass === "First Class")
         },
-        [uuid()]: {
+        ['2']: {
             name: "Business Class",
             items: data?.data?.filter((data: { chooseClass: any; }) => data?.chooseClass === "Business Class")
         },
-        [uuid()]: {
+        ['3']: {
             name: "Premium Economy",
             items: data?.data?.filter((data: { chooseClass: any; }) => data?.chooseClass === "Premium Economy")
         },
-        [uuid()]: {
+        ['4']: {
             name: "Economy Class",
             items: data?.data?.filter((data: { chooseClass: any; }) => data?.chooseClass === "Economy Class")
         },
-        [uuid()]: {
+        ['5']: {
             name: "Basic Economy",
             items: data?.data?.filter((data: { chooseClass: any; }) => data?.chooseClass === "Basic Economy")
         }
@@ -34,7 +33,7 @@ const BookedPassengerTable = (data: any) => {
     const [columns, setColumns] = useState(columnsFromBackend);
 
 
-    const onDragEnd = (result: DropResult, columns: { [x: string]: any; }, setColumns: { (value: React.SetStateAction<{ [x: string]: { name: string; items: { id: string; content: string; }[]; }; }>): void; (arg0: any): void; }) => {
+    const onDragEnd = (result: DropResult, columns: any, setColumns: any) => {
         if (!result.destination) return;
         const { source, destination } = result;
 
@@ -72,9 +71,11 @@ const BookedPassengerTable = (data: any) => {
     };
 
 
-    const removeItem = (id: any) => {
-        const newPassengers = data?.data?.length && [...data?.data].filter((passenger: { id: any; }) => passenger.id !== id)
-        dispatch(actionRemovePassenger(newPassengers))
+    const removeItem = (itemId: string, id: any) => {
+        const newcolumns = { ...columns } as any;
+        newcolumns[itemId].items = (newcolumns[itemId].items && newcolumns[itemId].items.filter((passenger: { id: any; }) => passenger.id !== id)) || []
+        setColumns(newcolumns)
+        dispatch(actionRemovePassenger(newcolumns))
     }
 
 
@@ -140,8 +141,7 @@ const BookedPassengerTable = (data: any) => {
                                                                         <div>{item.endDate}</div>
                                                                         <div>{item.numberofPassengers}</div>
                                                                         <div>{column.name}</div>
-                                                                        {/* <div>{item.action}</div> */}
-                                                                        <button onClick={() => removeItem(item.id)}>delete</button>
+                                                                        <button onClick={() => removeItem(columnId, item.id)}>delete</button>
                                                                     </div>
                                                                 );
                                                             }}

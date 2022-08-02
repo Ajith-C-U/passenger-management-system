@@ -1,10 +1,11 @@
 import React, { useEffect, useState, FC } from 'react'
 import { Button, Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { actionGetBookedPassengersList, actionRemovePassenger } from '../../action';
 import CustomTable1 from '../../components/DragAndDrop';
 import BookedPassengerTable from '../../components/DragAndDrop/BookedPassengersTable';
+import "./index.scss"
 
 interface Props {
   id: any
@@ -15,7 +16,7 @@ const BookedPassengers = () => {
   const dispatch = useDispatch<any>()
   const bookTicket: any = useSelector<any>(state => state?.passengers);
   const [loader, setLoader] = useState(true)
-
+  const navigate = useNavigate()
 
   // GET PASSENGER LIST FUNCTION
   const getBookedPassengerList = React.useCallback(async () => {
@@ -56,10 +57,10 @@ const BookedPassengers = () => {
 
 
   return (
-    <div className='dashboard'>
+    <div className='booked-passengers'>
       <Row>
         <Col className='d-flex justify-content-between'>
-        <span className='p-2 m-2'>Passenger Management System</span>
+        <span className='logo p-2 m-2' onClick={() => navigate("/")}>Passenger Management System</span>
           <div className='p-2 m-2'>
           <Link to="/addPassenger" className='p-2 m-2'><Button>Add Passenger</Button></Link>
           <Link to="/bookTicket"  className='p-2 m-2'><Button>Book Ticket</Button></Link>

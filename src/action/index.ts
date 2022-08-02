@@ -14,26 +14,26 @@ const removePassengerSuccess = (data:any) => ({ type : REMOVE_PASSENGER_SUCCESS,
 
 
 // GET PASSENGERS LIST
-export const actionGetPassengersList = () => (dispatch: any) => { 
+export const actionGetPassengersList = () => (dispatch: (arg0: { type: string; data: any; }) => any) => { 
     return dispatch(getPassengersListSuccess(response))
 }
 
 // ADD PASSENGER
-export const actionAddPassenger = (name:any) => (dispatch : any) => {
+export const actionAddPassenger = (name:any) => (dispatch: (arg0: { type: string; data: any; }) => any) => {
     return dispatch(addPassengerSuccess(name))
 }
 
 // BOOK TICKET
-export const actionBookTicket = (data:any) => (dispatch : any) => {
+export const actionBookTicket = (data:any) => (dispatch: (arg0: { type: string; data: any; }) => any) => {
     return dispatch(bookTicketSuccess(data))
 }
 
 // GET BOOKED PASSENGERS LIST
-export const actionGetBookedPassengersList = () => (dispatch : any) => {
+export const actionGetBookedPassengersList = () => (dispatch: (arg0: { type: string; data: any; }) => any) => {
     return dispatch(getBookedPassengersListSuccess(res))
 }
 
 // REMOVE PASSENGER
-export const actionRemovePassenger = (data:any) => (dispatch : any) => {
+export const actionRemovePassenger = (data: any) => (dispatch: (arg0: { type: string; data: any; }) => any) => {
     return dispatch(removePassengerSuccess({data : {data : [...data]}}))
 }
