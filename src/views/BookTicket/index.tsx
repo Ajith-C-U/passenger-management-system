@@ -65,6 +65,7 @@ const BookTicket = () => {
             latitude: 1.1743
         }
     ]
+    
 
     return (
         <div className='book-ticket'>
@@ -97,7 +98,7 @@ const BookTicket = () => {
                     <Form.Label>From</Form.Label>
                     <Form.Select name="from" value={value.from} onChange={handleChange}>
                         <option value="">Select Your Place</option>
-                        {options && options.map((opt, index) => {
+                        {options && options.map((opt: { longitude: any; latitude: any; country: string | number | boolean | null | undefined; }, index: React.Key | null | undefined) => {
                             return (
                                 <>
                                     <option key={index} value={`${opt.longitude},${opt.latitude}`}>{opt.country}</option>
@@ -112,7 +113,7 @@ const BookTicket = () => {
                     <Form.Label>To</Form.Label>
                     <Form.Select name="to" value={value.to} onChange={handleChange}>
                         <option>Select Your Place</option>
-                        {options && options.map((opt, index) => {
+                        {options && options.map((opt: { longitude: any; latitude: any; country: string | null | undefined; }, index: React.Key | null | undefined) => {
                             return (
                                 <>
                                     <option key={index} value={`${opt.longitude},${opt.latitude}`}>{opt.country}</option>

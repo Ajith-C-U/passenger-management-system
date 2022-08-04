@@ -6,7 +6,7 @@ import {
     Graticule,
     Line
 } from "react-simple-maps";
-import map from "./worldmap.json"
+import map from "../../utils/worldmap.json"
 
 const MapChart = (location: any) => {
     const newFrom = location.location.viewDetails.from.split(',');

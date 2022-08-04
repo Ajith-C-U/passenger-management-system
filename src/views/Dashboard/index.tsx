@@ -26,7 +26,6 @@ const DashBoard = () => {
   }, [getPassengerList, loader])
 
 
-
   // SETTING DATA TO TABLE
   const getTableData = () => {
     // @ts-ignore: Unreachable code error

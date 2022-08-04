@@ -5,7 +5,34 @@ const INITIAL_STATE = {
     data: []
   },
   bookTicket: {
-    data: []
+    data: [],
+    options : [
+      {
+          country: "India",
+          longitude: 20.5937,
+          latitude: 78.9629
+      },
+      {
+          country: "Canada",
+          longitude: 56.1304,
+          latitude: 106.3468
+      },
+      {
+          country: "Germany",
+          longitude: 51.1657,
+          latitude: 10.4515
+      },
+      {
+          country: "Usa",
+          longitude: 37.0902,
+          latitude: 95.7129
+      },
+      {
+          country: "England",
+          longitude: 52.3555,
+          latitude: 1.1743
+      }
+  ]
   }
 }
 

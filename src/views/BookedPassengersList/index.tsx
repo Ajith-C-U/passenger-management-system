@@ -2,9 +2,8 @@ import React, { useEffect, useState, FC } from 'react'
 import { Button, Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { actionGetBookedPassengersList, actionRemovePassenger } from '../../action';
-import CustomTable1 from '../../components/DragAndDrop';
-import BookedPassengerTable from '../../components/DragAndDrop/BookedPassengersTable';
+import { actionGetBookedPassengersList } from '../../action';
+import DragAndDropTable from '../../components/DragAndDrop';
 import "./index.scss"
 
 interface Props {
@@ -61,10 +60,7 @@ const BookedPassengers = () => {
           </div>
         </Col>
         <Col xs={12}>
-        <BookedPassengerTable data={getTableData()} />
-        </Col>
-        <Col xs={12}>
-          <CustomTable1 data={getTableData()} />
+        <DragAndDropTable data={getTableData()} />
         </Col>
       </Row>
     </div>

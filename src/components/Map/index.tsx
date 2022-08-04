@@ -1,6 +1,6 @@
 import MapChart from "./MapChart";
 
-const  Map = (viewDetails : any) => {
+const Map = (viewDetails: any) => {
 
   return (
     <div>
@@ -8,5 +8,5 @@ const  Map = (viewDetails : any) => {
     </div>
   );
 }
- 
+
 export default Map;

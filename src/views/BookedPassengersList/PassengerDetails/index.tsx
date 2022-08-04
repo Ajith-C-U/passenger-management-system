@@ -4,7 +4,7 @@ import Map from '../../../components/Map'
 
 const PassengerDetails = () => {
 
-  let { id } = useParams();
+  const { id } = useParams();
 
   const bookTicket: any = useSelector<any>(state => state?.passengers);
 
