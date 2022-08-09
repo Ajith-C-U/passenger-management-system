@@ -1,7 +1,7 @@
 const logger = (store: { getState: () => any }) => (next: (arg0: any) => any) => (action: { type: any }) => {
     console.group(action.type)
     console.info('dispatching', action)
-    let result = next(action)
+    const result = next(action)
     console.groupEnd()
     return result
   }

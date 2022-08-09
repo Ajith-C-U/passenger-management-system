@@ -8,7 +8,7 @@ import { actionRemovePassenger } from "../../action";
 const DragAndDropTable = (data: any) => {
     const dispatch = useDispatch<any>()
 
-    let columnsFromBackend = {
+    const columnsFromBackend = {
         '1': {
             name: "First Class",
             items: data?.data?.filter((data: { chooseClass: string; }) => data?.chooseClass === "First Class")
