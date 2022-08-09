@@ -1,5 +1,16 @@
-import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal } from 'react';
 import Table from 'react-bootstrap/Table';
+
+interface Tabledata {
+    id: number,
+    name: string,
+    address: string,
+    passportNumber: number,
+    action:any
+}
+
+interface Title {
+    text: string | number | boolean | string | null | undefined,
+}
 
 function CustomTable({ ...props }) {
     const { data, header } = props
@@ -8,14 +19,14 @@ function CustomTable({ ...props }) {
         <Table striped bordered hover>
             <thead>
                 <tr>
-                    {header && header?.map((title: { text: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; },index: any)=>(
+                    {header && header?.map((title: Title, index: number)=>(
 
                     <th key={index}>{title.text}</th>
                     ))}
                 </tr>
             </thead>
             <tbody>
-                {data.map((data: { id: number, name: string, address: string, passportNumber: number, action:any }) => {
+                {data.map((data: Tabledata ) => {
                     return (
                         <>
                             <tr>

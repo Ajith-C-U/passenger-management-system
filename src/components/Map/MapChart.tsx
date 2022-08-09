@@ -1,5 +1,4 @@
 import {
-    ZoomableGroup,
     ComposableMap,
     Geographies,
     Geography,
@@ -7,19 +6,22 @@ import {
     Line
 } from "react-simple-maps";
 import map from "../../utils/worldmap.json"
+import "./index.scss"
 
-const MapChart = (location: any) => {
+const MapChart = (location: any, setTooltipContent: any) => {
+
+
     const newFrom = location.location.viewDetails.from.split(',');
     const newTo = location.location.viewDetails.to.split(',');
     return (
-        <ComposableMap
-            projection="geoEqualEarth"
-            projectionConfig={{
-                scale: 150,
-                center: [0, 0]
-            }}
-        >
-            <ZoomableGroup>
+        <div data-tip="">
+            <ComposableMap
+                projection="geoEqualEarth"
+                projectionConfig={{
+                    scale: 150,
+                    center: [0, 0]
+                }}
+            >
                 <Graticule stroke="#DDD" />
                 <Geographies
                     geography={map}
@@ -29,7 +31,30 @@ const MapChart = (location: any) => {
                 >
                     {({ geographies }) =>
                         geographies.map((geo) => (
-                            <Geography key={geo.rsmKey} geography={geo} />
+                            <Geography
+                                key={geo.rsmKey}
+                                geography={geo}
+                                data-tip={geo.properties.name}
+                                onMouseEnter={() => {
+                                    setTooltipContent(`${geo.properties.name}`);
+                                }}
+                                onMouseLeave={() => {
+                                    setTooltipContent("");
+                                }}
+                                style={{
+                                    default: {
+                                        fill: "#D6D6DA",
+                                        outline: "none"
+                                    },
+                                    hover: {
+                                        fill: "#F53",
+                                        outline: "none"
+                                    },
+                                    pressed: {
+                                        fill: "#E42",
+                                        outline: "none"
+                                    }
+                                }} />
                         ))
                     }
                 </Geographies>
@@ -40,8 +65,8 @@ const MapChart = (location: any) => {
                     strokeWidth={4}
                     strokeLinecap="round"
                 />
-            </ZoomableGroup>
-        </ComposableMap>
+            </ComposableMap>
+        </div>
     );
 };
 

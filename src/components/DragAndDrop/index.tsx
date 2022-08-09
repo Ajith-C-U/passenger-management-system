@@ -4,6 +4,10 @@ import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { actionRemovePassenger } from "../../action";
 
+interface Class {
+    chooseClass: string;
+}
+
 
 const DragAndDropTable = (data: any) => {
     const dispatch = useDispatch<any>()
@@ -11,23 +15,23 @@ const DragAndDropTable = (data: any) => {
     const columnsFromBackend = {
         '1': {
             name: "First Class",
-            items: data?.data?.filter((data: { chooseClass: string; }) => data?.chooseClass === "First Class")
+            items: data?.data?.filter((data: Class) => data?.chooseClass === "First Class")
         },
         '2': {
             name: "Business Class",
-            items: data?.data?.filter((data: { chooseClass: string; }) => data?.chooseClass === "Business Class")
+            items: data?.data?.filter((data: Class) => data?.chooseClass === "Business Class")
         },
         '3': {
             name: "Premium Economy",
-            items: data?.data?.filter((data: { chooseClass: string; }) => data?.chooseClass === "Premium Economy")
+            items: data?.data?.filter((data: Class) => data?.chooseClass === "Premium Economy")
         },
         '4': {
             name: "Economy Class",
-            items: data?.data?.filter((data: { chooseClass: string; }) => data?.chooseClass === "Economy Class")
+            items: data?.data?.filter((data: Class) => data?.chooseClass === "Economy Class")
         },
         '5': {
             name: "Basic Economy",
-            items: data?.data?.filter((data: { chooseClass: string; }) => data?.chooseClass === "Basic Economy")
+            items: data?.data?.filter((data: Class) => data?.chooseClass === "Basic Economy")
         }
     };
 
@@ -143,8 +147,8 @@ const DragAndDropTable = (data: any) => {
                                                                         <div>{item.numberofPassengers}</div>
                                                                         <div>{column.name}</div>
                                                                         <div className="d-flex">
-                                                                        <div className="p-2 m-3">{item.action}</div>
-                                                                        <Button className="p-2 m-4" onClick={() => removeItem(columnId, item.id)}>delete</Button>
+                                                                            <div className="p-2 m-3">{item.action}</div>
+                                                                            <Button className="p-2 m-4" onClick={() => removeItem(columnId, item.id)}>delete</Button>
                                                                         </div>
                                                                     </div>
                                                                 );
