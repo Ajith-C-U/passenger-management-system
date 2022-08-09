@@ -1,3 +1,5 @@
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import {
     ComposableMap,
     Geographies,
@@ -15,6 +17,9 @@ const MapChart = (location: any, setTooltipContent: any) => {
     const newTo = location.location.viewDetails.to.split(',');
     return (
         <div data-tip="">
+            <Link to="/bookedpassengers" className="m-4">
+            <Button className="btn btn-primary">Back</Button>
+            </Link>
             <ComposableMap
                 projection="geoEqualEarth"
                 projectionConfig={{

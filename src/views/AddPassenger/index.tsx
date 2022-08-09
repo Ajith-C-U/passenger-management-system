@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Form, Spinner } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { actionAddPassenger } from '../../action';
 import { v4 as uuid } from "uuid"
 import "./index.scss"
@@ -36,21 +36,24 @@ const AddPassenger = () => {
 
     return (
         <div className='add-passenger'>
+            <Link to="/">
+            <Button className="btn btn-primary mb-3">Back</Button>
+            </Link>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label className='add-passenger-label'>Name</Form.Label>
-                    <Form.Control type="text" name="name" value={value.name} onChange={handleChange} placeholder="Name" required />
+                    <Form.Control type="text"  maxLength={20} name="name" value={value.name} onChange={handleChange} placeholder="Name" required />
                     <span className='validation'>{CheckValidation(value.name)}</span>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Address</Form.Label>
-                    <Form.Control type="text" name="address" value={value.address} onChange={handleChange} placeholder="Address" required />
+                    <Form.Control type="text" maxLength={20} name="address" value={value.address} onChange={handleChange} placeholder="Address" required />
                     <span className='validation'>{CheckValidation(value.address)}</span>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Passport Number</Form.Label>
-                    <Form.Control type="text" name="passportNumber" value={value.passportNumber} onChange={handleChange} placeholder="Passport Number" required />
+                    <Form.Control type="text" maxLength={20} name="passportNumber" value={value.passportNumber} onChange={handleChange} placeholder="Passport Number" required />
                     <span className='validation'>{CheckValidation(value.passportNumber)}</span>
                 </Form.Group>
                 <Button variant="primary" type="submit" disabled={!value.address || !value.name || !value.passportNumber} >

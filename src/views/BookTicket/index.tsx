@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Col, Form, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { actionBookTicket } from '../../action';
 import { v4 as uuid } from "uuid"
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ReactDatePicker from 'react-datepicker';
 import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
@@ -65,64 +65,80 @@ const BookTicket = () => {
             latitude: 1.1743
         }
     ]
-    
+
 
     return (
         <div className='book-ticket'>
-            <div className="date-picker mb-3">
-                <label>Choose Date to Travel</label>
-                <ReactDatePicker selected={startDate} onChange={(date) => date && setStartDate(date)} minDate={moment().toDate()} />
-                <span className='validation'>{CheckValidation(value.startDate)}</span>
-            </div>
+            <Link to="/bookedpassengers">
+                <Button className="btn btn-primary mb-3">Back</Button>
+            </Link>
+            <Row>
+                <Col xs={6}>
+                    <div className="date-picker mb-3">
+                        <label>Choose Date to Travel</label>
+                        <ReactDatePicker selected={startDate} onChange={(date) => date && setStartDate(date)} minDate={moment().toDate()} />
+                        <span className='validation'>{CheckValidation(value.startDate)}</span>
+                    </div>
+                </Col>
+            </Row>
             <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Number of Passengers</Form.Label>
-                    <Form.Control type="number" name="numberofPassengers" min="1" value={value.numberofPassengers} onChange={handleChange} onKeyDown={e => (e.keyCode === 69 || e.keyCode === 190 || e.keyCode === 187 || e.keyCode === 189) && e.preventDefault()} placeholder="Number of Passengers" />
-                    <span className='validation'>{CheckValidation(value.numberofPassengers)}</span>
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                    <Form.Label>Choose Class</Form.Label>
-                    <Form.Select name="chooseClass" value={value.chooseClass} onChange={handleChange}>
-                        <option value="">Select Class</option>
-                        <option value="First Class">First Class</option>
-                        <option value="Business Class">Business Class</option>
-                        <option value="Premium Economy">Premium Economy</option>
-                        <option value="Economy Class">Economy Class</option>
-                        <option value="Basic Economy">Basic Economy</option>
-                    </Form.Select>
-                    <span className='validation'>{CheckValidation(value.chooseClass)}</span>
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                    <Form.Label>From</Form.Label>
-                    <Form.Select name="from" value={value.from} onChange={handleChange}>
-                        <option value="">Select Your Place</option>
-                        {options && options.map((opt: { longitude: any; latitude: any; country: string | number | boolean | null | undefined; }, index: React.Key | null | undefined) => {
-                            return (
-                                <>
-                                    <option key={index} value={`${opt.longitude},${opt.latitude}`}>{opt.country}</option>
-                                </>
-                            )
-                        })}
-                    </Form.Select>
-                    <span className='validation'>{CheckValidation(value.from)}</span>
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                    <Form.Label>To</Form.Label>
-                    <Form.Select name="to" value={value.to} onChange={handleChange}>
-                        <option>Select Your Place</option>
-                        {options && options.map((opt: { longitude: any; latitude: any; country: string | null | undefined; }, index: React.Key | null | undefined) => {
-                            return (
-                                <>
-                                    <option key={index} value={`${opt.longitude},${opt.latitude}`}>{opt.country}</option>
-                                </>
-                            )
-                        })}
-                    </Form.Select>
-                    <span className='validation'>{CheckValidation(value.to)}</span>
-                </Form.Group>
+                <Row>
+                    <Col xs={6}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Number of Passengers</Form.Label>
+                            <Form.Control type="number" name="numberofPassengers" min="1" value={value.numberofPassengers} onChange={handleChange} onKeyDown={e => (e.keyCode === 69 || e.keyCode === 190 || e.keyCode === 187 || e.keyCode === 189) && e.preventDefault()} placeholder="Number of Passengers" />
+                            <span className='validation'>{CheckValidation(value.numberofPassengers)}</span>
+                        </Form.Group>
+                    </Col>
+                    <Col xs={6}>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Choose Class</Form.Label>
+                            <Form.Select name="chooseClass" value={value.chooseClass} onChange={handleChange}>
+                                <option value="">Select Class</option>
+                                <option value="First Class">First Class</option>
+                                <option value="Business Class">Business Class</option>
+                                <option value="Premium Economy">Premium Economy</option>
+                                <option value="Economy Class">Economy Class</option>
+                                <option value="Basic Economy">Basic Economy</option>
+                            </Form.Select>
+                            <span className='validation'>{CheckValidation(value.chooseClass)}</span>
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={6}>
+                        <Form.Group className="mb-3">
+                            <Form.Label>From</Form.Label>
+                            <Form.Select name="from" value={value.from} onChange={handleChange}>
+                                <option value="">Select Your Place</option>
+                                {options && options.map((opt: { longitude: any; latitude: any; country: string | number | boolean | null | undefined; }, index: React.Key | null | undefined) => {
+                                    return (
+                                        <>
+                                            <option key={index} value={`${opt.longitude},${opt.latitude}`}>{opt.country}</option>
+                                        </>
+                                    )
+                                })}
+                            </Form.Select>
+                            <span className='validation'>{CheckValidation(value.from)}</span>
+                        </Form.Group>
+                    </Col>
+                    <Col xs={6}>
+                        <Form.Group className="mb-3">
+                            <Form.Label>To</Form.Label>
+                            <Form.Select name="to" value={value.to} onChange={handleChange}>
+                                <option>Select Your Place</option>
+                                {options && options.map((opt: { longitude: any; latitude: any; country: string | null | undefined; }, index: React.Key | null | undefined) => {
+                                    return (
+                                        <>
+                                            <option key={index} value={`${opt.longitude},${opt.latitude}`}>{opt.country}</option>
+                                        </>
+                                    )
+                                })}
+                            </Form.Select>
+                            <span className='validation'>{CheckValidation(value.to)}</span>
+                        </Form.Group>
+                    </Col>
+                </Row>
                 <Button variant="primary" type="submit" disabled={!value.chooseClass || !value.from || !value.to || !value.numberofPassengers || !value.startDate}>
                     Submit
                 </Button>

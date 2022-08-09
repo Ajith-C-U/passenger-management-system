@@ -7,7 +7,7 @@ const Map = (viewDetails: any) => {
   const [content, setContent] = useState("");
 
   return (
-    <div>
+    <div className="mt-3">
       <MapChart location={viewDetails} setTooltipContent={setContent} />
       <ReactTooltip>{content}</ReactTooltip>
     </div>
